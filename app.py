@@ -2,10 +2,17 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from models import db, Volunteer, NGO, Request
 from geopy.distance import geodesic
 import json
+import os
 
 app = Flask(__name__)
 app.secret_key = "secret123"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://appuser:pass@localhost/disasterdb'
+
+# Use SQLite in Render for simplicity (local DB file)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+    "DATABASE_URL", "sqlite:///disaster_portal.db"
+)
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
@@ -198,6 +205,6 @@ def ngo_logout():
 # RUN APP
 # ----------------------------------------------------
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
+
