@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>NGO Registration 📝</h2>
+<form method="POST">
+  <label>NGO Name</label>
+  <input type="text" name="name" required>
+
+  <label>Contact Person</label>
+  <input type="text" name="contact_person" required>
+
+  <label>Email</label>
+  <input type="email" name="email" required>
+
+  <label>Phone</label>
+  <input type="text" name="phone" required>
+
+  <button type="submit" class="btn">Register</button>
+</form>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>New Volunteer Request 🆕</h2>
+
+<!-- Include Tagify CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+<form method="POST" style="max-width:600px;margin:auto;">
+  <label>Title</label>
+  <input type="text" name="title" required>
+
+  <label>Description</label>
+  <textarea name="description" rows="3" required></textarea>
+
+  <!-- REQUIRED SKILLS -->
+  <label>Required Skills</label>
+  <input id="required-skills-input" name="required_skills" placeholder="Type or choose multiple skills" required>
+
+  <!-- VOLUNTEERS NEEDED -->
+  <label>Number of Volunteers Needed</label>
+  <select name="required_volunteers" required>
+    <option value="">Select</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+  </select>
+
+  <!-- LOCATION -->
+  <label>Location</label>
+  <input list="location-list" name="location" required>
+  <datalist id="location-list">
+    <option value="Chennai">
+    <option value="Coimbatore">
+    <option value="Madurai">
+    <option value="Tiruchirappalli">
+    <option value="Salem">
+    <option value="Erode">
+  </datalist>
+
+  <button type="submit" class="btn">Submit Request</button>
+</form>
+
+<!-- Tagify Script for Required Skills -->
+<script>
+  const skillOptions = [
+    "first aid", "medical", "nursing", "cooking", "logistics",
+    "rescue", "driving", "food distribution", "communication", "fundraising"
+  ];
+
+  new Tagify(document.querySelector('#required-skills-input'), {
+    whitelist: skillOptions,
+    dropdown: { enabled: 0, maxItems: 8, classname: "tags-look", closeOnSelect: false }
+  });
+</script>
+{% endblock %}

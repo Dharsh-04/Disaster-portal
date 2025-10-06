@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ volunteer.full_name }} 👋</h2>
+
+<p>Your Skills:</p>
+<ul style="list-style:none; padding-left:0;">
+  {% for s in skills_list %}
+    <li style="margin:3px 0;">✅ {{ s }}</li>
+  {% endfor %}
+</ul>
+
+{% if matches %}
+  <h3>Matching NGO Requests:</h3>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Required Skills</th>
+      <th>Score</th>
+    </tr>
+    {% for m in matches %}
+    <tr>
+      <td>{{ m.title }}</td>
+      <td>{{ m.required_skills }}</td>
+      <td>{{ m.score }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No matching NGO requests found yet.</p>
+{% endif %}
+
+<a href="{{ url_for('volunteer_logout') }}" class="btn btn-danger" style="margin-top:20px;">Logout</a>
+{% endblock %}

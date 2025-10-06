@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Volunteer Registration</h2>
+  <form method="POST" action="/api/volunteer/register">
+    <label>Full Name:</label>
+    <input type="text" name="full_name" required><br>
+
+    <label>Email:</label>
+    <input type="email" name="email"><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone"><br>
+
+    <label>Location:</label>
+    <input type="text" name="location"><br>
+
+    <label>Skills (comma-separated):</label>
+    <input type="text" name="skills"><br>
+
+    <label>Availability:</label>
+    <input type="text" name="availability"><br>
+
+    <button type="submit">Register</button>
+  </form>
+{% endblock %}

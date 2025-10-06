@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Matched Volunteers for "{{ req.title }}"</h2>
+<p>Required Skills: <strong>{{ req.required_skills }}</strong></p>
+
+{% if matches %}
+  <table>
+    <tr>
+      <th>Volunteer Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Skills</th>
+      <th>Match Score</th>
+    </tr>
+    {% for v in matches %}
+    <tr>
+      <td>{{ v.volunteer }}</td>
+      <td>{{ v.email }}</td>
+      <td>{{ v.phone }}</td>
+      <td>{{ v.skills }}</td>
+      <td>{{ v.score }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No suitable volunteers found for this request.</p>
+{% endif %}
+
+<a href="{{ url_for('ngo_dashboard') }}" class="btn" style="margin-top:20px;">⬅ Back to Dashboard</a>
+{% endblock %}

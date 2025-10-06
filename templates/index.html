@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="home-container" style="text-align:center;">
+  <h2>Welcome to the Disaster Relief Volunteer Coordination Portal 🌍</h2>
+  <p style="font-size:16px; color:#555;">
+    A unified platform connecting <strong>Volunteers</strong> and <strong>NGOs</strong> for faster disaster relief response.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3063/3063825.png" alt="Volunteer" width="100" height="100" />
+      <h3>Join as a Volunteer</h3>
+      <p>Register your skills and availability, and get matched to NGOs in need.</p>
+      <a href="{{ url_for('volunteer_home') }}" class="btn">I'm a Volunteer</a>
+    </div>
+
+    <div class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/3185/3185075.png" alt="NGO" width="100" height="100" />
+      <h3>Join as an NGO</h3>
+      <p>Post your volunteer requirements and instantly find qualified people to help.</p>
+      <a href="{{ url_for('ngo_home') }}" class="btn btn-success">I'm an NGO</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

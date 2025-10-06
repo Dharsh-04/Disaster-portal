@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Volunteer Portal 🧍</h2>
+<p>Register if you're new, or log in to see your matched NGO requests.</p>
+
+<div style="display:flex;gap:30px;margin-top:30px;">
+  <a href="{{ url_for('volunteer_register') }}" class="btn">Register</a>
+  <a href="{{ url_for('volunteer_login') }}" class="btn btn-success">Login</a>
+</div>
+{% endblock %}

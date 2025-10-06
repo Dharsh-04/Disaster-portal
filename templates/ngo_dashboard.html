@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ ngo.name }} 👋</h2>
+<p>Contact Person: {{ ngo.contact_person }}</p>
+<p>Total Requests: <strong>{{ requests|length }}</strong></p>
+<hr>
+
+<a href="{{ url_for('request_new') }}" class="btn">➕ Create New Request</a>
+
+{% if requests %}
+  <h3 style="margin-top:20px;">Your Requests</h3>
+  <table>
+    <tr>
+      <th>Title</th>
+      <th>Required Skills</th>
+      <th>Volunteers Needed</th>
+      <th>Action</th>
+    </tr>
+
+    {% for r in requests %}
+    <tr>
+      <td>{{ r.title }}</td>
+      <td>
+        {% set skills = r.required_skills.split(',') %}
+        {% for s in skills %}
+          <span class="skill-tag">{{ s.strip() }}</span>
+        {% endfor %}
+      </td>
+      <td>{{ r.required_volunteers }}</td>
+      <td>
+        <a href="/ngo/request/{{ r.id }}/matches" class="btn btn-success">View Matches</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No requests yet. Click above to create one.</p>
+{% endif %}
+
+<a href="{{ url_for('ngo_logout') }}" class="btn btn-danger" style="margin-top:20px;">Logout</a>
+{% endblock %}

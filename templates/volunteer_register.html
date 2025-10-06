@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Volunteer Registration 📝</h2>
+
+<!-- Include Tagify CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+
+<form method="POST" style="max-width:600px;margin:auto;">
+  <label>Full Name</label>
+  <input type="text" name="full_name" required>
+
+  <label>Email</label>
+  <input type="email" name="email" required>
+
+  <label>Phone</label>
+  <input type="text" name="phone" required>
+
+  <!-- SKILLS -->
+  <label>Skills</label>
+  <input id="skills-input" name="skills" placeholder="Type or choose multiple skills" required>
+
+  <!-- LOCATION -->
+  <label>Location</label>
+  <input list="location-list" name="location" placeholder="Select or type your city" required>
+  <datalist id="location-list">
+    <option value="Chennai">
+    <option value="Coimbatore">
+    <option value="Madurai">
+    <option value="Tiruchirappalli">
+    <option value="Salem">
+    <option value="Erode">
+  </datalist>
+
+  <!-- AVAILABILITY -->
+  <label>Availability</label>
+  <select name="availability" required>
+    <option value="">Select</option>
+    <option value="Full day">Full day</option>
+    <option value="Morning">Morning</option>
+    <option value="Evening">Evening</option>
+    <option value="Weekends only">Weekends only</option>
+  </select>
+
+  <button type="submit" class="btn">Register</button>
+</form>
+
+<!-- Tagify Script for Skills -->
+<script>
+  const skills = [
+    "first aid", "medical", "nursing", "cooking", "logistics",
+    "rescue", "driving", "food distribution", "communication", "fundraising"
+  ];
+
+  new Tagify(document.querySelector('#skills-input'), {
+    whitelist: skills,
+    dropdown: { enabled: 0, maxItems: 8, classname: "tags-look", closeOnSelect: false }
+  });
+</script>
+{% endblock %}
